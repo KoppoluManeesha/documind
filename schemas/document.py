@@ -3,8 +3,7 @@ from typing import Optional
 from datetime import datetime
 
 # ============================================
-# This schema is used when USER SENDS data to us
-# Think — what does the user fill in when uploading a document?
+# Used when USER SENDS data to us
 # ============================================
 class DocumentCreate(BaseModel):
     title: str = Field(
@@ -19,17 +18,23 @@ class DocumentCreate(BaseModel):
     description: Optional[str] = None
 
 # ============================================
-# This schema is used when WE SEND data back to user
-# Think — what does the user see after uploading?
+# Used when WE SEND data back to user
 # ============================================
 class DocumentResponse(BaseModel):
     id: int
     title: str
     content: str
     description: Optional[str] = None
-    uploaded_at: datetime
+    uploaded_at: Optional[datetime] = None
     is_active: bool
 
-    # This tells Pydantic to work with SQLAlchemy models
-    # You will understand this fully on Day 3 when we add the database
+    # This tells Pydantic to read data from
+    # SQLAlchemy model attributes directly
     model_config = {"from_attributes": True}
+
+# ============================================
+# Used when returning a list of documents
+# ============================================
+class DocumentListResponse(BaseModel):
+    total: int
+    documents: list[DocumentResponse]
