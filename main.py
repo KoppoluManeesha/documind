@@ -1,17 +1,15 @@
 from fastapi import FastAPI
-from routers import documents
+from routers import documents, auth
 
-# Create the FastAPI application
 app = FastAPI(
     title="DocuMind",
     description="AI powered document assistant",
     version="0.1.0"
 )
 
-# Connect your routers — like Django's include() in urls.py
+app.include_router(auth.router)
 app.include_router(documents.router)
 
-# Health check route
 @app.get("/")
 async def home():
     return {
