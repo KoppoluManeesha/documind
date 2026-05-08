@@ -25,9 +25,9 @@ import os
 # So Alembic can find your models and database files
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from database import Base
-from models.document import Document
-from models.user import User
+from backend.database import Base
+from backend.models.document import Document
+from backend.models.user import User
 
 target_metadata = Base.metadata
 
