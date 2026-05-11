@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.exceptions import RequestValidationError
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.exc import IntegrityError
 from backend.routers import documents, auth
 from backend.exceptions import (
@@ -13,6 +14,15 @@ app = FastAPI(
     title="DocuMind",
     description="AI powered document assistant",
     version="0.1.0"
+)
+
+# CORS — allow React frontend to talk to FastAPI
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # Register exception handlers
