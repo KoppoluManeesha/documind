@@ -10,7 +10,7 @@ class DocumentResponse(BaseModel):
     id: int
     title: str
     content: str
-    owner_id: int
+    user_id: int
 
     class Config:
         from_attributes = True
