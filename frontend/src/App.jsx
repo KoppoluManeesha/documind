@@ -1,20 +1,18 @@
-import { useState, useEffect } from "react"
-import "./App.css"
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
+import Login from "./pages/Login"
+import Signup from "./pages/Signup"
+import Dashboard from "./pages/Dashboard"
 
 function App() {
-  const [message, setMessage] = useState("")
-
-  useEffect(() => {
-    fetch("http://localhost:8000/")
-      .then(res => res.json())
-      .then(data => setMessage(data.message))
-  }, [])
-
   return (
-    <div className="container">
-      <h1>DocuMind 🧠</h1>
-      <p>{message || "Connecting to backend..."}</p>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 

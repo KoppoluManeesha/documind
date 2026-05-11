@@ -7,7 +7,15 @@ from backend.dependencies import get_current_user
 from backend.ai import ask_document_ai
 
 router = APIRouter()
-
+@router.get("/documents")
+def get_documents(
+    db: Session = Depends(get_db),
+    current_user = Depends(get_current_user)
+):
+    docs = db.query(Document).filter(
+        Document.user_id == current_user.id
+    ).all()
+    return docs
 class DocumentCreate(BaseModel):
     title: str
     content: str
