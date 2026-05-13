@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
-from models.user import User
-from schemas.user import UserCreate
-from auth import hash_password, verify_password
+from backend.models.user import User
+from backend.schemas.user import UserCreate
+from backend.auth import hash_password, verify_password
 
 def create_user(db: Session, user: UserCreate) -> User:
     # Hash the password before saving

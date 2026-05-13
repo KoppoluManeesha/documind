@@ -1,35 +1,18 @@
 from logging.config import fileConfig
-
-from sqlalchemy import engine_from_config
-from sqlalchemy import pool
-
+from sqlalchemy import engine_from_config, pool
 from alembic import context
 
-# this is the Alembic Config object, which provides
-# access to the values within the .ini file in use.
+# Add your imports here
+from backend.database import Base  # Your Base from database.py
+from backend.models.user import User  # Import all your models
+from backend.models.document import Document  # Add more if you have others
+from backend.database import Base
 config = context.config
-
-# Interpret the config file for Python logging.
-# This line sets up loggers basically.
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-# add your model's MetaData object here
-# for 'autogenerate' support
-# from myapp import mymodel
-# target_metadata = mymodel.Base.metadata
-import sys
-import os
+target_metadata = Base.metadata  # This links Alembic to your SQLAlchemy models
 
-# This adds your project root to Python's path
-# So Alembic can find your models and database files
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-from backend.database import Base
-from backend.models.document import Document
-from backend.models.user import User
-
-target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:

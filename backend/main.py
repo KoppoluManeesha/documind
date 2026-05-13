@@ -2,7 +2,12 @@ from fastapi import FastAPI
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.exc import IntegrityError
-from backend.routers import documents, auth
+from backend.routers import auth
+from backend.routers import documents
+from backend.database import Base, engine
+from backend.models.user import User
+from backend.models.document import Document
+Base.metadata.create_all(bind=engine)
 from backend.exceptions import (
     DocuMindException,
     documind_exception_handler,

@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from models.document import Document
-from schemas.document import DocumentCreate
+from backend.models.document import Document
+from backend.schemas.document import DocumentCreate
 from exceptions import DocuMindException
 from fastapi import status
 

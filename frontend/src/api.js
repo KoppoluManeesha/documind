@@ -36,3 +36,30 @@ export async function createDocument(token, title, content) {
   })
   return res.json()
 }
+export const analyzeDocument = async (docId, token, question) => {
+  // Updated URL to match {BF44F80A-A501-4998-9CB2-B87DDE620CAF}.png
+  const response = await fetch(`${BASE}/analyze/${docId}`, { 
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ prompt: question }), 
+  });
+
+  if (!response.ok) {
+    const errorBody = await response.json();
+    console.error("AI Error:", errorBody);
+    throw new Error("Failed to analyze");
+  }
+  return response.json();
+};
+export async function deleteDocument(docId, token) {
+  const res = await fetch(`${BASE}/documents/${docId}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+  return res.json()
+}
