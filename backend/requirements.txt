@@ -6,3 +6,4 @@ python-dotenv
 pypdf
 sqlalchemy
 psycopg2-binary
+email-validator
