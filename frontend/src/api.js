@@ -1,4 +1,4 @@
-const BASE = "http://localhost:8000"
+const BASE = import.meta.env.VITE_API_URL
 
 export async function signup(email, password) {
   const res = await fetch(`${BASE}/auth/signup`, {
