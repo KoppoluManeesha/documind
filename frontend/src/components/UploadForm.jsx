@@ -22,7 +22,7 @@ function UploadForm({ onUploadSuccess }) {
       const token = localStorage.getItem("token");
 
       await axios.post(
-        "http://127.0.0.1:8000/upload",
+        "https://documind-wkz7.onrender.com/upload",
         formData,
         {
           headers: {
