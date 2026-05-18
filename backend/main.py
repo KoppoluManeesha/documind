@@ -22,9 +22,13 @@ app = FastAPI(
 )
 
 # CORS — allow React frontend to talk to FastAPI
+# CORS — allow React frontend to talk to FastAPI
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=[
+        "http://localhost:5173",
+        "https://documind-frontend-4h76.onrender.com"
+    ],  # Now both your local machine and your live website can access the backend!
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
