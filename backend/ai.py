@@ -114,7 +114,7 @@ def ask_document_ai(context: str, question: str):
             ],
             model="openai/gpt-oss-120b",
             temperature=0.0,
-            max_tokens=40,
+            max_tokens=300,
         )
         return chat_completion.choices[0].message.content.strip()
     except Exception as e:
